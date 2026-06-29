@@ -1,0 +1,40 @@
+# Reference Reticulum config for the SX1262 radio node.
+# Deploy to:  ~/.reticulum-radio/config   (a DEDICATED config dir, NOT ~/.reticulum)
+#
+# Why a separate config dir: this node owns the radio and runs as a shared
+# instance; clients (e.g. MeshChatX) connect over the TCP bridge below and keep
+# their own ~/.reticulum config. That keeps the protected radio interface config
+# out of reach of client apps that rewrite their own config. See deploy/README.md.
+#
+# RNS 1.3.5 landmines (do NOT add these back): interface_mode = gateway or
+# pointtopoint break this build (KeyError 'mode' / announces don't propagate);
+# discover_interfaces / autoconnect_discovered_interfaces / selected_interface_mode
+# / instance_name make rnsd exit 255. Keep interface_mode = full.
+
+[reticulum]
+  enable_transport = Yes
+  share_instance = Yes
+  shared_instance_port = 37500
+  instance_control_port = 37501
+  panic_on_interface_error = No
+
+[logging]
+  loglevel = 4
+
+[interfaces]
+
+  [[AiO LoRa]]
+    type = SX1262Interface
+    interface_enabled = True
+    interface_mode = full
+    frequency = 915000000
+    bandwidth = 125000
+    spreadingfactor = 8
+    codingrate = 5
+    txpower = 17
+
+  [[MeshChatX Bridge]]
+    type = TCPServerInterface
+    interface_enabled = True
+    listen_ip = 127.0.0.1
+    listen_port = 4242

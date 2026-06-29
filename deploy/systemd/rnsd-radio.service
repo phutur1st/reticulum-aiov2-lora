@@ -1,0 +1,25 @@
+# Reference systemd USER unit for the SX1262 radio node.
+# Deploy to:  ~/.config/systemd/user/rnsd-radio.service
+# Adjust the user/home path if your checkout isn't at ~/code/reticulum-aiov2-lora.
+#
+# Enable so it survives logout and boots headless:
+#   loginctl enable-linger "$USER"
+#   systemctl --user daemon-reload
+#   systemctl --user enable --now rnsd-radio
+#
+# Runs rnsd from THIS repo's .venv (it must import sx1262 + lgpio + spidev, which
+# a frozen client like MeshChatX cannot) against the dedicated radio config dir.
+
+[Unit]
+Description=Reticulum radio node (SX1262 AiO V2 + TCP bridge for MeshChatX)
+After=network-online.target
+
+[Service]
+Type=simple
+WorkingDirectory=/home/phutur1st/code/reticulum-aiov2-lora
+ExecStart=/home/phutur1st/code/reticulum-aiov2-lora/.venv/bin/rnsd --config /home/phutur1st/.reticulum-radio
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target
