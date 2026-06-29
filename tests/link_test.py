@@ -19,7 +19,7 @@ duration = float(sys.argv[3]) if len(sys.argv) > 3 else 60.0
 interval = float(sys.argv[4]) if len(sys.argv) > 4 else 8.0
 
 
-PEERS = {b"cm5", b"mac"}
+PEERS = {b"cm5", b"peer"}
 
 
 class AnnounceHandler:

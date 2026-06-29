@@ -6,7 +6,7 @@ venv/
 .DS_Store
 .claude/
 
-# Reticulum runtime state in the test config dir
-rns/mac-test/storage/
-rns/mac-test/identities/
-rns/mac-test/*.log
+# Reticulum runtime state in the test config dirs
+rns/*/storage/
+rns/*/identities/
+rns/*/*.log

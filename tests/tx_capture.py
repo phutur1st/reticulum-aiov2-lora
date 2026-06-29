@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Capture the exact raw bytes RNS hands to the RNode for transmission.
-Run standalone on the Mac (stop the Mac rnsd first so this owns the RNode).
+Run standalone on the peer host (stop its rnsd first so this owns the RNode).
 
     python3 tests/tx_capture.py <configdir>
 """
@@ -33,8 +33,8 @@ if serve:
 else:
     ident = RNS.Identity()
     dest = RNS.Destination(ident, RNS.Destination.IN, RNS.Destination.SINGLE,
-                           "aioprobe", "mac")
+                           "aioprobe", "peer")
     for i in range(3):
-        dest.announce(app_data=b"mac")
+        dest.announce(app_data=b"peer")
         time.sleep(3)
     time.sleep(1)

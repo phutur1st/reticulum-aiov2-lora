@@ -1,4 +1,4 @@
-# Reticulum test config for the Mac, driving the RNode peer.
+# Reticulum config for the peer host, driving an RNode as the test peer.
 # Use with:  python3 tests/announce_peer.py   (configdir points here)
 [reticulum]
   enable_transport = No
@@ -15,7 +15,7 @@
   [[RNode LoRa]]
     type = RNodeInterface
     interface_enabled = True
-    port = /dev/cu.usbmodem101
+    port = /dev/ttyACM0          # set to your RNode's serial port
     frequency = 915000000
     bandwidth = 125000
     txpower = 17
