@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "aiov2-sx1262"
+version = "0.1.0"
+description = "Userspace SX1262 driver and Reticulum interface for the HackerGadgets uConsole AiO V2"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "GPL-3.0-or-later" }
+authors = [{ name = "phutur1st" }]
+dependencies = ["spidev", "lgpio"]
+classifiers = [
+  "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+  "Programming Language :: Python :: 3",
+  "Operating System :: POSIX :: Linux",
+  "Topic :: Communications :: Ham Radio",
+]
+
+# The Reticulum interface (rns/interfaces/SX1262Interface.py) additionally needs
+# `rns` at runtime; it is loaded by rnsd, not imported by this package, so it is
+# not listed as a dependency here. Install it alongside: `pip install rns`.
+
+[project.urls]
+Homepage = "https://github.com/phutur1st/reticulum-aiov2-lora"
+Repository = "https://github.com/phutur1st/reticulum-aiov2-lora"
+
+[tool.setuptools.packages.find]
+where = ["src"]

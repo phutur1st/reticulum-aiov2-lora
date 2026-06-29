@@ -1,0 +1,12 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.DS_Store
+.claude/
+
+# Reticulum runtime state in the test config dir
+rns/mac-test/storage/
+rns/mac-test/identities/
+rns/mac-test/*.log
