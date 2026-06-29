@@ -10,8 +10,8 @@ Record IQ with `rtl_sdr` while the radio transmits. Tune the SDR a little
 off the signal so the LoRa carrier sits clear of the SDR's DC spike:
 
 ```
-# capture ~9 s at 1.024 Msps, centered 250 kHz above a 920.0 MHz signal
-rtl_sdr -f 920250000 -s 1024000 -g 0 -n 9216000 cap.bin
+# capture ~9 s at 1.024 Msps, centered 250 kHz above a 915.0 MHz signal
+rtl_sdr -f 915250000 -s 1024000 -g 0 -n 9216000 cap.bin
 ```
 
 Use a low gain (`-g 0`) for a co-located transmitter (strong) and a higher

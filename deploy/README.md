@@ -57,7 +57,7 @@ Then point the client (MeshChatX) at a `TCPClientInterface` → `127.0.0.1:4242`
 **own** `~/.reticulum` config. It connects as a client of the shared instance; the radio
 stays exclusively owned by `rnsd-radio`.
 
-## Gotchas (learned the hard way — see ../HANDOFF.md)
+## Gotchas (learned the hard way)
 
 - **Keep `interface_mode = full`.** On RNS 1.3.5, `gateway` throws `KeyError 'mode'` and
   `pointtopoint` silently stops announce propagation (client traffic won't bridge).

@@ -3,7 +3,7 @@
 ## Host
 - Raspberry Pi Compute Module 5 Lite, in a ClockworkPi uConsole.
 - Kernel 6.12.93-v8+. RP1 GPIO is `gpiochip0` (54 lines).
-- Reached over LAN as `cm5` (10.0.0.110, user `phutur1st`).
+- Headless; driven over SSH.
 
 ## Radio (HackerGadgets AiO V2)
 - Semtech **SX1262** wired directly to the CM5 SPI bus — no MCU.
@@ -36,8 +36,8 @@ oscillator never starts. Seeing that error *before* TCXO setup is expected.
 | Sync word | 0x1424 (SX1262 POR default; matches RNode) |
 
 ## Peer
-- RNode on the Mac at `/dev/cu.usbmodem101`: Ebyte EoRa-S3 (ESP32-S3 + SX1262),
-  firmware 1.75, host-controlled mode (LoRa params set at runtime by RNS).
+- Tested against an RNode peer: Ebyte EoRa-S3 (ESP32-S3 + SX1262), host-controlled
+  mode (LoRa parameters set at runtime by RNS).
 
 ## Backend decision
 Driver uses **lgpio + spidev** (both preinstalled on the CM5). The `LoRaRF`
