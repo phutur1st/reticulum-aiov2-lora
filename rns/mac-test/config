@@ -1,0 +1,24 @@
+# Reticulum test config for the Mac, driving the RNode peer.
+# Use with:  python3 tests/announce_peer.py   (configdir points here)
+[reticulum]
+  enable_transport = No
+  share_instance = Yes
+  shared_instance_port = 37500
+  instance_control_port = 37501
+  panic_on_interface_error = No
+
+[logging]
+  loglevel = 6
+
+[interfaces]
+
+  [[RNode LoRa]]
+    type = RNodeInterface
+    interface_enabled = True
+    port = /dev/cu.usbmodem101
+    frequency = 915000000
+    bandwidth = 125000
+    txpower = 17
+    spreadingfactor = 8
+    codingrate = 5
+    id_callsign = AIOTEST

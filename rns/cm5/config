@@ -1,0 +1,24 @@
+# Reticulum config for the CM5, driving the AiO V2 SX1262 via the custom
+# interface. Deploy as ~/.reticulum/config and copy the interface file to
+# ~/.reticulum/interfaces/SX1262Interface.py.
+[reticulum]
+  enable_transport = No
+  share_instance = Yes
+  shared_instance_port = 37428
+  instance_control_port = 37429
+  panic_on_interface_error = No
+
+[logging]
+  loglevel = 6
+
+[interfaces]
+
+  [[AiO LoRa]]
+    type = SX1262Interface
+    interface_enabled = True
+    interface_mode = full
+    frequency = 915000000
+    bandwidth = 125000
+    spreadingfactor = 8
+    codingrate = 5
+    txpower = 22
