@@ -9,11 +9,18 @@
 # RNS 1.3.5 landmines (do NOT add these back): interface_mode = gateway or
 # pointtopoint break this build (KeyError 'mode' / announces don't propagate);
 # discover_interfaces / autoconnect_discovered_interfaces / selected_interface_mode
-# / instance_name make rnsd exit 255. Keep interface_mode = full.
+# make rnsd exit 255. Keep interface_mode = full.
+#
+# instance_name is REQUIRED when another RNS instance runs on the same host (e.g.
+# MeshChatX). RNS keys its local shared-instance socket by name (@rns/<name>); two
+# instances both defaulting to "default" collide on @rns/default, and the client's
+# RPC calls then land on this node's RPC with a mismatched authkey, flooding it
+# with "digest received was wrong". A distinct name keeps them separate.
 
 [reticulum]
   enable_transport = Yes
   share_instance = Yes
+  instance_name = radio
   shared_instance_port = 37500
   instance_control_port = 37501
   panic_on_interface_error = No

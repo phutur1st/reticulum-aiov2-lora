@@ -61,8 +61,12 @@ stays exclusively owned by `rnsd-radio`.
 
 - **Keep `interface_mode = full`.** On RNS 1.3.5, `gateway` throws `KeyError 'mode'` and
   `pointtopoint` silently stops announce propagation (client traffic won't bridge).
-- **Don't** add `discover_interfaces`, `autoconnect_discovered_interfaces`,
-  `selected_interface_mode`, or `instance_name` — rnsd exits 255 on these.
+- **Set a distinct `instance_name`** (e.g. `radio`) whenever another RNS instance runs on the
+  same host (e.g. MeshChatX). RNS keys its local shared-instance socket by name (`@rns/<name>`);
+  if both default to `default` they collide on `@rns/default` and the client's RPC calls hit
+  this node's RPC with a mismatched authkey — flooding the log with `digest received was wrong`.
+- **Don't** add `discover_interfaces`, `autoconnect_discovered_interfaces`, or
+  `selected_interface_mode` — rnsd exits 255 on these.
 - The radio is **half-duplex and single-owner**: only `rnsd-radio` may open the SX1262.
   A second process opening `/dev/spidev1.0` (or another rnsd) will conflict.
 - Radio params (915 MHz / BW125 / SF8 / CR5 / sync 0x1424 / preamble 64) must match the
