@@ -4,6 +4,29 @@ Tools for validating the SX1262 transmit path on-air, using the CM5's
 onboard RTL-SDR (RTL2838). They were used to prove that the CM5 emits a
 fully-formed, decodable LoRa frame.
 
+## Sample output
+
+A small example capture is committed at [`samples/lora_sf8_bw125.bin`](samples/lora_sf8_bw125.bin)
+(64 KB) — one RNode-framed burst from the AiO V2's SX1262 at **915 MHz, SF8, BW125**,
+recorded with the RTL-SDR and reduced to baseband at 256 ksps. Reproduce the images
+below from it:
+
+```bash
+python3 specgram.py   samples/lora_sf8_bw125.bin samples/spectrogram.png 256000 915000000 "SX1262 LoRa burst (915 MHz, SF8, BW125)"
+python3 loradecode.py samples/lora_sf8_bw125.bin samples/dechirp.png     915000000 915000000 256000 8 125000
+```
+
+**Spectrogram** (`specgram.py`) — the upchirp preamble, the sync-word + SFD
+down-chirps mid-burst, then the varying data symbols; ~125 kHz wide, centered on 915 MHz:
+
+![LoRa burst spectrogram](samples/spectrogram.png)
+
+**Dechirped** (`loradecode.py`) — each symbol FFT'd after de-chirping. The flat
+plateau (constant bin) is the preamble; the bright vertical band is the sync word +
+SFD; the scattered peaks are the data symbols:
+
+![Dechirped LoRa symbols](samples/dechirp.png)
+
 ## Capture
 
 Record IQ with `rtl_sdr` while the radio transmits. Tune the SDR a little
