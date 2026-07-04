@@ -1,8 +1,8 @@
 # RF diagnostics
 
-Tools for validating the SX1262 transmit path on-air, using the CM5's
-onboard RTL-SDR (RTL2838). They were used to prove that the CM5 emits a
-fully-formed, decodable LoRa frame.
+Tools for validating the SX1262 transmit path on-air, using the AiO V2's
+onboard RTL-SDR (RTL2838). They were used to prove that the AiO V2's SX1262
+emits a fully-formed, decodable LoRa frame.
 
 ## Sample output
 

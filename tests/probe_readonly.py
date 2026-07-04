@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Read-only SX1262 probe: reset, status, device errors, sync-word register.
-Does not transmit. Run on the CM5 with meshtasticd stopped.
+Does not transmit. Run on the CM5 with rnsd-radio stopped.
 
     python3 tests/probe_readonly.py
 """

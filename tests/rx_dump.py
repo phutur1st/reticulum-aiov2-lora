@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Dump full SX1262 RX buffer reads to diagnose ReadBuffer offset alignment.
-Run on the CM5 (meshtasticd/rnsd stopped) while a peer announces (no IFAC).
+Run on the CM5 (rnsd-radio stopped) while a peer announces (no IFAC).
 
     python3 tests/rx_dump.py [seconds]
 """
@@ -13,7 +13,7 @@ from sx1262.driver import SX1262  # noqa: E402
 
 secs = float(sys.argv[1]) if len(sys.argv) > 1 else 40.0
 dev = SX1262()
-dev.begin(freq_hz=920_000_000, sf=8, bw_hz=125_000, cr_denom=5)
+dev.begin(freq_hz=915_000_000, sf=8, bw_hz=125_000, cr_denom=5)
 dev.listen()
 print("dumping...")
 t0 = time.time()

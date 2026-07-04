@@ -4,7 +4,7 @@ Matches the RNode on-air format so an RNode peer's transmissions are received.
 
     python3 tests/rx_listen.py [seconds]
 
-Run on the CM5 with meshtasticd stopped.
+Run on the CM5 with rnsd-radio stopped.
 """
 import os
 import sys
@@ -17,7 +17,7 @@ LISTEN_S = float(sys.argv[1]) if len(sys.argv) > 1 else 30.0
 
 dev = SX1262()
 err = dev.begin(freq_hz=915_000_000, sf=8, bw_hz=125_000, cr_denom=5,
-                preamble=18, sync=(0x14, 0x24), tcxo_voltage=1.8)
+                preamble=64, sync=(0x14, 0x24), tcxo_voltage=1.8)
 print(f"bring-up: status={dev.get_status():#04x} device_errors={err:#06x} "
       f"({'XOSC OK' if err == 0 else 'XOSC_START_ERR!' if err & 0x20 else 'see datasheet'})")
 print(f"listening {LISTEN_S:.0f}s @ 915.000 MHz SF8 BW125 CR4:5 ...")

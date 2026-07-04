@@ -44,9 +44,13 @@ Driver uses **lgpio + spidev** (both preinstalled on the CM5). The `LoRaRF`
 library was rejected: it officially supports only up to the Pi 4, not the
 RP1-based CM5.
 
-## Coexistence with Meshtastic
-`meshtasticd` is installed and normally active on the CM5 and holds the SPI/GPIO.
-Stop it before running any driver here:
+## Radio ownership
+The SX1262 has a single owner at a time. In this deployment the `rnsd-radio`
+service (see `deploy/`) owns it; stop it before running the direct-driver
+scripts in `tests/`:
 
-    sudo systemctl stop meshtasticd     # release the radio
-    sudo systemctl start meshtasticd    # restore
+    systemctl --user stop rnsd-radio     # release the radio
+    systemctl --user start rnsd-radio    # restore
+
+If `meshtasticd` is also installed it will claim the SPI/GPIO on boot too, so
+stop that as well (`sudo systemctl stop meshtasticd`).
